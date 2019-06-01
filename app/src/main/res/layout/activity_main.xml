@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".views.activities.MainActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!-- 어플리케이션 상태 뷰 -->
+            <android.support.v7.widget.CardView
+                android:id="@+id/application_status_cont"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:cardElevation="6dp"
+                app:cardMaxElevation="6dp"
+                app:cardCornerRadius="8dp"
+                app:cardUseCompatPadding="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp">
+                    <TextView
+                        android:id="@+id/app_status_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/application_status"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorBlack"/>
+
+                    <TextView
+                        android:id="@+id/app_status_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/app_status_title"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/application_ok" />
+                    <ImageView
+                        android:id="@+id/app_status_icon"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/ic_status_ok"/>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <!-- 감지된 게임 뷰 -->
+            <android.support.v7.widget.CardView
+                android:id="@+id/game_detect_cont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="6dp"
+                app:cardMaxElevation="6dp"
+                app:cardUseCompatPadding="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="16dp"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:id="@+id/detect_game_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detect_game_title"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="18sp" />
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp">
+                        <TableRow
+                            android:layout_marginBottom="2dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/garupa_korean" />
+
+                            <TextView
+                                android:id="@+id/garupa_korean_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/garupa_not_installed"
+                                android:textColor="@color/colorWarning"
+                                android:textStyle="bold" />
+                        </TableRow>
+                        <TableRow
+                            android:layout_marginTop="2dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/garupa_japanese"/>
+
+                            <TextView
+                                android:id="@+id/garupa_japanese_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/garupa_not_installed"
+                                android:textColor="@color/colorWarning"
+                                android:textStyle="bold" />
+                        </TableRow>
+                    </TableLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <!-- 오늘 플레이 시간 뷰 -->
+            <android.support.v7.widget.CardView
+                android:id="@+id/today_play_cont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="6dp"
+                app:cardMaxElevation="6dp"
+                app:cardUseCompatPadding="true">
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="16dp"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:id="@+id/today_playtime_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/today_play_time_title"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="18sp"
+                        android:gravity="center"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@id/today_playtime_title"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="16dp">
+                        <ImageView
+                            android:id="@+id/today_playtime_icon"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/ic_playtime_good"/>
+
+                        <TextView
+                            android:id="@+id/today_playtime_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="loading..."
+                            android:textColor="@color/colorBlack"
+                            android:textSize="48sp" />
+                    </LinearLayout>
+
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:rowCount="2"
+                android:useDefaultMargins="false"
+                android:layout_marginTop="16dp">
+
+                <LinearLayout
+                    android:id="@+id/general_settings_cont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:background="#273c75"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/ic_general_settings" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="@string/settings_general_settings"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/time_settings_cont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:background="#353b48"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/ic_time_settings" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="@string/settings_time_settings"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/display_settings_cont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:background="#192a56"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/ic_display_settings" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="@string/settings_display_settings"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/application_info_cont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:background="#f5f6fa"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/ic_info" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="@string/application_info"
+                        android:textColor="@color/colorBlack" />
+                </LinearLayout>
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

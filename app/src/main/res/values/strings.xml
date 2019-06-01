@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">걸파핼퍼</string>
+
+    <!-- MainActivity Start -->
+    <string name="application_status">어플리케이션 상태</string>
+    <string name="application_permission_error">오버레이 권한 오류</string>
+    <string name="application_accessibility_error">접근성 서비스 오류</string>
+    <string name="application_ok">감지된 문제 없음</string>
+
+    <string name="detect_game_title">감지된 뱅드림</string>
+    <string name="garupa_korean">뱅드림 한국어</string>
+    <string name="garupa_japanese">뱅드림 일본어</string>
+    <string name="garupa_installed">설치 됨</string>
+    <string name="garupa_not_installed">설치 안됨</string>
+
+    <string name="today_play_time_title">플레이 시간</string>
+    <string name="playtime_good">좋음</string>
+    <string name="playtime_soso">약간 많음</string>
+    <string name="playtime_bad">중지 권고</string>
+
+    <string name="settings_general_settings">시스템 설정</string>
+    <string name="settings_time_settings">시간 설정</string>
+    <string name="settings_display_settings">화면 설정</string>
+    <string name="application_info">걸파핼퍼 정보</string>
+    <!-- MainActivity End -->
+
+    <!-- Game Overlay View -->
+    <string name="protector_start">걸파 핼퍼가 시작되었습니다.</string>
+    <!-- GameOverlay View End-->
+
+    <!-- Etc... -->
+    <string-array name="garupa_packages">
+        <item name="bangdream_ko">com.kakaogames.bangdreamkr</item>
+        <item name="bangdream_jp">jp.co.craftegg.band</item>
+    </string-array>
+
+    <string name="access_description">뱅드림 실행을 감지하기 위해 권한 허용이 필요합니다.</string>
+</resources>
