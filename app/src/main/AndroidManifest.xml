@@ -2,27 +2,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="kr.saintdev.bandhelp">
+
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"
-        android:hardwareAccelerated="true">
-        <activity android:name=".views.activities.MainActivity"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".views.activities.TimeSettingActiviry"></activity>
+        <activity
+            android:name=".views.activities.MainActivity"
             android:hardwareAccelerated="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Bangdream run detect service -->
+        </activity> <!-- Bangdream run detect service -->
         <service
             android:name=".core.services.DetectService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
@@ -33,8 +34,7 @@
             <meta-data
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_service_config" />
-        </service>
-        <!-- BandDream Protector service -->
+        </service> <!-- BandDream Protector service -->
         <service android:name=".core.services.ProtectorService" />
     </application>
 

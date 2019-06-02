@@ -3,7 +3,12 @@ package kr.saintdev.bandhelp.core.services;
 import android.accessibilityservice.AccessibilityService;
 import android.content.Intent;
 import android.view.accessibility.AccessibilityEvent;
+
+import java.util.Date;
+
 import kr.saintdev.bandhelp.R;
+import kr.saintdev.bandhelp.core.database.GarupaDBController;
+import kr.saintdev.bandhelp.types.GarupaPlayTime;
 
 
 public class DetectService extends AccessibilityService {
@@ -15,6 +20,7 @@ public class DetectService extends AccessibilityService {
     };
 
     private boolean isBangdreamRunning = false;
+    private GarupaPlayTime.GarupaNation bangdreamNation = GarupaPlayTime.GarupaNation.GARUPA_KOREA;
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
@@ -55,15 +61,28 @@ public class DetectService extends AccessibilityService {
     private void onBangdreamStop() {
         isBangdreamRunning = false;
         stopService(new Intent(this, ProtectorService.class));
+
+        Date startDate = new Date(currnetPlayStartTime);
+        int playTime = (int) ((System.currentTimeMillis() - currnetPlayStartTime) / 60000);
+
+        if(playTime != 0) {
+            // Play 1 minute over.
+            GarupaPlayTime newTime = new GarupaPlayTime(playTime, startDate, bangdreamNation);
+            GarupaDBController.getInstance(this).addNewPlayTime(newTime);
+        }
     }
 
     /**
      * @Date 05.24 2019
      * Call when bangdream started.
      */
+    long currnetPlayStartTime = 0;
     private void onBangdreamRun() {
         isBangdreamRunning = true;
         startService(new Intent(this, ProtectorService.class));
+
+        // Save Play Start Time.
+        this.currnetPlayStartTime = System.currentTimeMillis();
     }
 
     /**
@@ -73,12 +92,17 @@ public class DetectService extends AccessibilityService {
      */
     private boolean isEventByBangdream(String eventPackageName) {
         String[] apps = getResources().getStringArray(R.array.garupa_packages);
-        for(String app : apps) {
-            if(app.equals(eventPackageName)) {
-                return true;
-            }
+        if(apps[0].equals(eventPackageName)) {
+            // Play Korean.
+            bangdreamNation = GarupaPlayTime.GarupaNation.GARUPA_KOREA;
+            return true;
+        } else if(apps[1].equals(eventPackageName)) {
+            // Play japanese.
+            bangdreamNation = GarupaPlayTime.GarupaNation.GARUPA_JAPANESE;
+            return true;
         }
 
+        // Not bangdream.
         return false;
     }
 

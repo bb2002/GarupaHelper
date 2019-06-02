@@ -28,6 +28,31 @@
     <string name="protector_start">걸파 핼퍼가 시작되었습니다.</string>
     <!-- GameOverlay View End-->
 
+    <!-- Time settings pref -->
+    <string name="time_settings_category">시간 설정</string>
+    <string name="time_settings_safe">권장 시간</string>
+    <string name="time_settings_warning">경고 시간</string>
+    <string name="time_settings_danger">위험 시간</string>
+    <string-array name="times_str">
+        <item>0h 30m</item>
+        <item>1h 00m</item>
+        <item>1h 30m</item>
+        <item>2h 00m</item>
+        <item>2h 30m</item>
+        <item>3h 00m</item>
+        <item>3h 30m</item>
+    </string-array>
+    <string-array name="times_val">
+        <item>30</item>
+        <item>60</item>
+        <item>90</item>
+        <item>120</item>
+        <item>150</item>
+        <item>180</item>
+        <item>210</item>
+    </string-array>
+
+
     <!-- Etc... -->
     <string-array name="garupa_packages">
         <item name="bangdream_ko">com.kakaogames.bangdreamkr</item>

@@ -7,10 +7,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+
 import kr.saintdev.bandhelp.R;
+import kr.saintdev.bandhelp.core.database.GarupaDBController;
 import kr.saintdev.bandhelp.core.libs.ApplicationDetector;
 import kr.saintdev.bandhelp.core.libs.PermissionUtility;
 import kr.saintdev.bandhelp.core.services.DetectService;
+import kr.saintdev.bandhelp.types.GarupaPlayTime;
 
 public class MainActivity extends AppCompatActivity {
     private TextView appStatusTextView = null;
@@ -53,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Search Garupa game.
         searchGarupaGames();
+
+        // Set today play time
+        setTodayPlayTimeData();
     }
 
     /**
@@ -112,5 +122,29 @@ public class MainActivity extends AppCompatActivity {
         });
         String[] bangdreams = getResources().getStringArray(R.array.garupa_packages);
         detector.execute(bangdreams[0], bangdreams[1]);
+    }
+
+    /**
+     * @Date 06.02 2019
+     * Set Today play time
+     */
+    private void setTodayPlayTimeData() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+        Date date = new Date(System.currentTimeMillis());
+        String dateString = format.format(date);
+
+        ArrayList<GarupaPlayTime> playTimes =  GarupaDBController.getInstance(this).getCurrentDayPlayTime(dateString);
+        if(playTimes == null) {
+            this.todayPlayTimeText.setText("00h 00m");
+        } else {
+            int times = 0;
+            for(GarupaPlayTime time : playTimes) {
+                times += time.getPlayTimeMinute();
+            }
+
+            int hour = times / 60;
+            int minute = times % 60;
+            this.todayPlayTimeText.setText(hour + "h " + minute + "m");
+        }
     }
 }
