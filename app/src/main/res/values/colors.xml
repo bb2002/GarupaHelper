@@ -11,4 +11,10 @@
 
     <color name="colorBlack">#2d3436</color>
     <color name="colorWhite">#f5f6fa</color>
+
+    <color name="githubGrass_Gray">#dfe6e9</color>
+    <color name="githubGrass_Green1">#b8e994</color>
+    <color name="githubGrass_Green2">#2ecc71</color>
+    <color name="githubGrass_Green3">#27ae60</color>
+    <color name="githubGrass_Red1">#e74c3c</color>
 </resources>

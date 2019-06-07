@@ -144,8 +144,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/today_play_time_title"
                         android:textColor="@color/colorBlack"
-                        android:textSize="18sp"
-                        android:gravity="center"
+                        android:textSize="14sp"
                         app:layout_constraintTop_toTopOf="parent"/>
 
                     <LinearLayout
@@ -156,12 +155,6 @@
                         app:layout_constraintLeft_toLeftOf="parent"
                         android:gravity="center_vertical"
                         android:layout_marginTop="16dp">
-                        <ImageView
-                            android:id="@+id/today_playtime_icon"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:src="@drawable/ic_playtime_good"/>
-
                         <TextView
                             android:id="@+id/today_playtime_text"
                             android:layout_width="match_parent"
@@ -171,8 +164,41 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="48sp" />
                     </LinearLayout>
-
                 </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <!-- 이번달 잔디밭 뷰 -->
+            <android.support.v7.widget.CardView
+                android:id="@+id/month_grass_cont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="6dp"
+                app:cardMaxElevation="6dp"
+                app:cardUseCompatPadding="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="16dp">
+                    <TextView
+                        android:id="@+id/month_grass_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/today_month_grass_title"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="14sp"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <kr.saintdev.bandhelp.views.lib.GithubGrass
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:start_month="6"
+                        app:end_month="8"
+                        app:orient="horizontal"/>
+                </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <GridLayout
@@ -182,55 +208,6 @@
                 android:rowCount="2"
                 android:useDefaultMargins="false"
                 android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:id="@+id/general_settings_cont"
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:background="#273c75"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@drawable/ic_general_settings" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center"
-                        android:text="@string/settings_general_settings"
-                        android:textColor="@color/colorWhite" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/time_settings_cont"
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:background="#353b48"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@drawable/ic_time_settings" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center"
-                        android:text="@string/settings_time_settings"
-                        android:textColor="@color/colorWhite" />
-                </LinearLayout>
-
                 <LinearLayout
                     android:id="@+id/display_settings_cont"
                     android:layout_width="wrap_content"
@@ -251,7 +228,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center"
-                        android:text="@string/settings_display_settings"
+                        android:text="@string/settings_settings"
                         android:textColor="@color/colorWhite" />
                 </LinearLayout>
 

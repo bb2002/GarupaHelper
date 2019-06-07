@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     private CardView appStatusCont = null;
     private TextView garupaKoreanStatus = null;
     private TextView garupaJapaneseStatus = null;
-    private ImageView todayPlayTimeIcon = null;
     private TextView todayPlayTimeText = null;
     private View[] optionsView = null;
 
@@ -41,11 +40,8 @@ public class MainActivity extends AppCompatActivity {
         this.appStatusCont = findViewById(R.id.application_status_cont);
         this.garupaJapaneseStatus = findViewById(R.id.garupa_japanese_status);
         this.garupaKoreanStatus = findViewById(R.id.garupa_korean_status);
-        this.todayPlayTimeIcon = findViewById(R.id.today_playtime_icon);
         this.todayPlayTimeText = findViewById(R.id.today_playtime_text);
         this.optionsView = new View[] {
-                        findViewById(R.id.general_settings_cont),
-                        findViewById(R.id.time_settings_cont),
                         findViewById(R.id.display_settings_cont),
                         findViewById(R.id.application_info_cont)
         };
