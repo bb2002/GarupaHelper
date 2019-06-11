@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -18,6 +20,7 @@ import kr.saintdev.bandhelp.core.libs.ApplicationDetector;
 import kr.saintdev.bandhelp.core.libs.PermissionUtility;
 import kr.saintdev.bandhelp.core.services.DetectService;
 import kr.saintdev.bandhelp.types.GarupaPlayTime;
+import kr.saintdev.bandhelp.views.lib.GithubGrass;
 
 public class MainActivity extends AppCompatActivity {
     private TextView appStatusTextView = null;
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView garupaJapaneseStatus = null;
     private TextView todayPlayTimeText = null;
     private View[] optionsView = null;
+    private LinearLayout monthPlayTimeCont = null;
+    private GithubGrass grassView = null;
 
 
     @Override
@@ -45,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
                         findViewById(R.id.display_settings_cont),
                         findViewById(R.id.application_info_cont)
         };
+        this.monthPlayTimeCont = findViewById(R.id.record_gatsu);
+
+        // Draw grassView
+        Calendar cal = Calendar.getInstance();
+        int month = cal.get(Calendar.MONTH) + 1;
+        this.grassView = new GithubGrass(this, month, month, 0);
+        this.grassView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        monthPlayTimeCont.addView(this.grassView);
     }
 
     @Override
@@ -59,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Set today play time
         setTodayPlayTimeData();
+
+        drawGrassBlocks();
     }
 
     /**
@@ -141,6 +156,55 @@ public class MainActivity extends AppCompatActivity {
             int hour = times / 60;
             int minute = times % 60;
             this.todayPlayTimeText.setText(hour + "h " + minute + "m");
+        }
+    }
+
+    /**
+     * @Date 06.11 2019
+     * Draw Grass Views
+     */
+    private void drawGrassBlocks() {
+        Calendar cal = Calendar.getInstance();
+        GarupaDBController dbHelper = GarupaDBController.getInstance(this);
+
+        String month = (cal.get(Calendar.MONTH) + 1) <= 9 ? ("0" + (cal.get(Calendar.MONTH) + 1)) : (cal.get(Calendar.MONTH) + 1) + "";
+
+        ArrayList<GarupaPlayTime> times = dbHelper.getCurrentMonthPlayTime(cal.get(Calendar.YEAR) + "-" + month);
+
+        if(times != null) {
+            for (int i = 0; i < times.size(); ++i) {
+                Calendar dateTime = Calendar.getInstance();
+                dateTime.setTime(times.get(i).getStartDateTime());      // 시작 날짜를 구한다.
+                int playtimes = 0;
+
+                for (; i < times.size(); ++i) {
+                    GarupaPlayTime nextTime = times.get(i);
+                    Calendar nextCal = Calendar.getInstance();
+                    dateTime.setTime(times.get(i).getStartDateTime());      // 시작 날짜를 구한다.
+
+                    if (nextCal.get(Calendar.DAY_OF_MONTH) == dateTime.get(Calendar.DAY_OF_MONTH) && nextCal.get(Calendar.MONTH) == dateTime.get(Calendar.MONTH) && nextCal.get(Calendar.YEAR) == dateTime.get(Calendar.YEAR)) {
+                        // 년 월 일이 모두 같은 플레이 시간
+                        playtimes += nextTime.getPlayTimeMinute();
+                    } else {
+                        break;
+                    }
+                }
+
+                int color;
+                if (playtimes == 0) {
+                    color = R.color.githubGrass_Gray;
+                } else if (playtimes > 0 && playtimes <= 30) {
+                    color = R.color.githubGrass_Green1;
+                } else if (playtimes > 31 && playtimes <= 60) {
+                    color = R.color.githubGrass_Green2;
+                } else if (playtimes > 61 && playtimes <= 120) {
+                    color = R.color.githubGrass_Green3;
+                } else {
+                    color = R.color.githubGrass_Red1;
+                }
+
+                this.grassView.setGrassColor(dateTime.get(Calendar.DAY_OF_MONTH), dateTime.get(Calendar.MONTH) + 1, color);
+            }
         }
     }
 }

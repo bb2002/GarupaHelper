@@ -181,8 +181,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:id="@+id/record_gatsu"
                     android:orientation="vertical"
-                    android:layout_margin="16dp">
+                    android:layout_margin="16dp"
+                    android:gravity="center">
                     <TextView
                         android:id="@+id/month_grass_title"
                         android:layout_width="match_parent"
@@ -191,13 +193,6 @@
                         android:textColor="@color/colorBlack"
                         android:textSize="14sp"
                         app:layout_constraintTop_toTopOf="parent"/>
-
-                    <kr.saintdev.bandhelp.views.lib.GithubGrass
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:start_month="6"
-                        app:end_month="8"
-                        app:orient="horizontal"/>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 

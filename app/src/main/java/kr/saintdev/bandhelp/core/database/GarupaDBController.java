@@ -58,12 +58,32 @@ public class GarupaDBController {
 
     /**
      *  날짜에 맞는 플레이 시간들을 가져온다.
-     * @param date  current date
+     * @param date  current date    (yyyy-MM-dd)
      * @return  Playtime array.
      */
     public ArrayList<GarupaPlayTime> getCurrentDayPlayTime(String date) {
         SQLiteDatabase readable = dbHelper.getReadOnly();
         Cursor csr = readable.rawQuery("SELECT * FROM garupa_play_time WHERE play_date LIKE '%"+date+"%'", null);
+
+        ArrayList<GarupaPlayTime> playTimes = new ArrayList<>();
+        while(csr.moveToNext()) {
+            GarupaPlayTime playTime = parseCursorToPlayTime(csr);
+            if(playTime != null) {
+                playTimes.add(playTime);
+            }
+        }
+
+        return playTimes.size() == 0 ? null : playTimes;
+    }
+
+    /**
+     * 해당 달 수에 맞는 플레이 시간들을 가져온다.
+     * @param yearMonth current month (yyyy-MM)
+     * @return Playtime array
+     */
+    public ArrayList<GarupaPlayTime> getCurrentMonthPlayTime(String yearMonth) {
+        SQLiteDatabase readable = dbHelper.getReadOnly();
+        Cursor csr = readable.rawQuery("SELECT * FROM garupa_play_time WHERE play_date LIKE '%"+ yearMonth +"%'", null);
 
         ArrayList<GarupaPlayTime> playTimes = new ArrayList<>();
         while(csr.moveToNext()) {

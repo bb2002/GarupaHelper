@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".views.activities.TimeSettingActiviry"></activity>
+        <activity android:name=".views.activities.PlayTimeDetailActivity"></activity>
+        <activity android:name=".views.activities.TimeSettingActiviry" />
         <activity
             android:name=".views.activities.MainActivity"
             android:hardwareAccelerated="true">

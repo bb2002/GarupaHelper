@@ -31,6 +31,11 @@ public class GithubGrass extends LinearLayout {
         InitView(context, null);
     }
 
+    public GithubGrass(Context context, int startMonth, int endMonth, int orient) {
+        super(context);
+        InitView(context, startMonth, endMonth, orient);
+    }
+
     public GithubGrass(Context context, AttributeSet attrs) {
         super(context, attrs);
         InitView(context, attrs);
@@ -46,24 +51,10 @@ public class GithubGrass extends LinearLayout {
         InitView(context, attrs);
     }
 
-    private void InitView(Context context, AttributeSet attrs) {
-        setOrientation(LinearLayout.VERTICAL);
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        int grassStartMonth = 1;
-        int grassEndMonth = 1;
-        int orient = 0;
-
-        if(attrs != null) {
-            TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.GithubGrass);
-            grassStartMonth = array.getInteger(R.styleable.GithubGrass_start_month, 1);
-            grassEndMonth = array.getInteger(R.styleable.GithubGrass_end_month, 1);
-            orient = array.getInteger(R.styleable.GithubGrass_orient, 0);
-            array.recycle();
-        }
-
+    private void InitView(Context context, int grassStartMonth, int grassEndMonth, int orient) {
         // 올해 달력을 그린다.
         Calendar cal = new GregorianCalendar(Locale.KOREA);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         for(int i = grassStartMonth; i <= grassEndMonth; i ++) {
             cal.set(Calendar.MONTH, i-1);
@@ -96,8 +87,28 @@ public class GithubGrass extends LinearLayout {
                 grassView.setLayoutParams(params);
                 grassView.setBackgroundResource(R.color.githubGrass_Gray);
                 grassLayout.addView(grassView);
+
+                this.GrassDayViews.put(i + "/" + (j + 1), grassView);
             }
         }
+    }
+
+    private void InitView(Context context, AttributeSet attrs) {
+        setOrientation(LinearLayout.VERTICAL);
+
+        int grassStartMonth = 1;
+        int grassEndMonth = 1;
+        int orient = 0;
+
+        if(attrs != null) {
+            TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.GithubGrass);
+            grassStartMonth = array.getInteger(R.styleable.GithubGrass_start_month, 1);
+            grassEndMonth = array.getInteger(R.styleable.GithubGrass_end_month, 1);
+            orient = array.getInteger(R.styleable.GithubGrass_orient, 0);
+            array.recycle();
+        }
+
+        InitView(context, grassStartMonth, grassEndMonth, orient);
     }
 
     private int dpToPx(int dp) {
@@ -123,6 +134,13 @@ public class GithubGrass extends LinearLayout {
             case 11: return R.string.nov;
             case 12: return R.string.dec;
             default: return R.string.jun;
+        }
+    }
+
+    public void setGrassColor(int day, int month, int colorId) {
+        View grassMonth = GrassDayViews.get(month + "/" + day);
+        if(grassMonth != null) {
+            grassMonth.setBackgroundResource(colorId);
         }
     }
 }
