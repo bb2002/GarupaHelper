@@ -172,20 +172,21 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<GarupaPlayTime> times = dbHelper.getCurrentMonthPlayTime(cal.get(Calendar.YEAR) + "-" + month);
 
         if(times != null) {
-            for (int i = 0; i < times.size(); ++i) {
+            for (int i = 0; i < times.size(); i++) {
                 Calendar dateTime = Calendar.getInstance();
                 dateTime.setTime(times.get(i).getStartDateTime());      // 시작 날짜를 구한다.
                 int playtimes = 0;
 
-                for (; i < times.size(); ++i) {
+                for (; i < times.size(); i++) {
                     GarupaPlayTime nextTime = times.get(i);
                     Calendar nextCal = Calendar.getInstance();
-                    dateTime.setTime(times.get(i).getStartDateTime());      // 시작 날짜를 구한다.
+                    nextCal.setTime(times.get(i).getStartDateTime());      // 시작 날짜를 구한다.
 
                     if (nextCal.get(Calendar.DAY_OF_MONTH) == dateTime.get(Calendar.DAY_OF_MONTH) && nextCal.get(Calendar.MONTH) == dateTime.get(Calendar.MONTH) && nextCal.get(Calendar.YEAR) == dateTime.get(Calendar.YEAR)) {
                         // 년 월 일이 모두 같은 플레이 시간
                         playtimes += nextTime.getPlayTimeMinute();
                     } else {
+                        i--;
                         break;
                     }
                 }
@@ -195,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
                     color = R.color.githubGrass_Gray;
                 } else if (playtimes > 0 && playtimes <= 30) {
                     color = R.color.githubGrass_Green1;
-                } else if (playtimes > 31 && playtimes <= 60) {
+                } else if (playtimes >= 31 && playtimes <= 60) {
                     color = R.color.githubGrass_Green2;
                 } else if (playtimes > 61 && playtimes <= 120) {
                     color = R.color.githubGrass_Green3;

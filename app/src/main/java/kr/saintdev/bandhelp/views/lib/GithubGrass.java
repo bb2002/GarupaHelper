@@ -79,6 +79,21 @@ public class GithubGrass extends LinearLayout {
                 grassLayout.setRowCount(7);
             }
 
+            // set location
+            Calendar cal2 = new GregorianCalendar(Locale.KOREA);
+            cal2.set(Calendar.MONTH, i - 1);
+            cal2.set(Calendar.DAY_OF_MONTH, 1);
+
+            for(int j = 0; j < cal2.get(Calendar.DAY_OF_WEEK) - 1; j ++) {
+                View grassView = new View(context);
+                LayoutParams params = new LayoutParams(dpToPx(15), dpToPx(15));
+                params.setMargins(dpToPx(2),dpToPx(2),dpToPx(2),dpToPx(2));
+                grassView.setLayoutParams(params);
+                grassView.setAlpha(0.0F);
+                grassLayout.addView(grassView);
+            }
+
+
             // Create month in grass
             for(int j = 0; j < monthOfLength; j ++) {
                 View grassView = new View(context);
