@@ -14,8 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".views.activities.PlayTimeDetailActivity"></activity>
-        <activity android:name=".views.activities.TimeSettingActiviry" />
+        <activity
+            android:name=".views.activities.GeneralSettingsActivity"/>
         <activity
             android:name=".views.activities.MainActivity"
             android:hardwareAccelerated="true">
@@ -25,6 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- Bangdream run detect service -->
+        <activity android:name=".views.activities.PlayRecoredActivity"
+            android:label="@string/recored_title"/>
         <service
             android:name=".core.services.DetectService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">

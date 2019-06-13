@@ -1,3 +1,94 @@
 <resources>
-    <string name="app_name">ガルパHelper</string>
+    <string name="app_name">ガルファハルパー</string>
+
+    <!-- MainActivity Start -->
+    <string name="application_status">アプリケーション状態</string>
+    <string name="application_permission_error">オーバーレイ権限エラー</string>
+    <string name="application_accessibility_error">アクセスエラー</string>
+    <string name="application_ok">検索された問題なし</string>
+
+    <string name="detect_game_title">検索されたバンドリーム</string>
+    <string name="garupa_korean">バンドリーム韓国語</string>
+    <string name="garupa_japanese">バンドリーム日本語</string>
+    <string name="garupa_installed">設置完了</string>
+    <string name="garupa_not_installed">設置ができない</string>
+
+    <string name="today_play_time_title">記録-今日</string>
+    <string name="today_month_grass_title">記録-今月</string>
+
+    <string name="settings_settings">ガルパハールファー設定</string>
+    <string name="application_info">ガルパハールファー情報</string>
+    <!-- MainActivity End -->
+
+    <!-- Game Overlay View -->
+    <string name="protector_start">ガルパハールファーが始まりました。</string>
+    <!-- GameOverlay View End-->
+
+    <!-- Time settings pref -->
+    <string name="time_settings_category">時間設定</string>
+    <string-array name="times_str">
+        <item>0h 30m</item>
+        <item>1h 00m</item>
+        <item>1h 30m</item>
+        <item>2h 00m</item>
+        <item>2h 30m</item>
+        <item>3h 00m</item>
+        <item>3h 30m</item>
+    </string-array>
+    <string-array name="times_val">
+        <item>30</item>
+        <item>60</item>
+        <item>90</item>
+        <item>120</item>
+        <item>150</item>
+        <item>180</item>
+        <item>210</item>
+    </string-array>
+
+    <string name="settings_general_permission">権限設定</string>
+    <string name="settings_general_access">アクセス設定</string>
+    <string name="settings_general_access_summ">アクセス性サービスを確認します。</string>
+    <string name="settings_general_overlap">オーバーレイ権限</string>
+    <string name="settings_general_overlay_summ">オーバーレイ権限を確認します。</string>
+    <string name="settings_general_ingame">ゲーム設定</string>
+    <string name="settings_general_ltemode">強制LTE使用</string>
+    <string name="settings_general_ltemode_summ">LTEだけを使ってバンドリームをプレーします。</string>
+    <string name="settings_general_display_orient">画面固定</string>
+    <string name="settings_general_display_orient_default">横</string>
+    <string-array name="general_display_orient_dirg">
+        <item>横</item>
+        <item>横 (逆方向)</item>
+        <item>縦</item>
+        <item>縦 (逆方向)</item>
+    </string-array>
+
+
+    <!-- Etc... -->
+    <string-array name="garupa_packages">
+        <item name="bangdream_ko">com.kakaogames.bangdreamkr</item>
+        <item name="bangdream_jp">jp.co.craftegg.band</item>
+    </string-array>
+
+    <string name="sun">日</string>
+    <string name="mon">月</string>
+    <string name="tue">火</string>
+    <string name="wen">水</string>
+    <string name="thr">木</string>
+    <string name="fri">金</string>
+    <string name="sat">土</string>
+
+    <string name="jun">1月</string>
+    <string name="feb">2月</string>
+    <string name="march">3月</string>
+    <string name="april">4月</string>
+    <string name="may">5月</string>
+    <string name="june">6月</string>
+    <string name="july">7月</string>
+    <string name="aguest">8月</string>
+    <string name="setempber">9月</string>
+    <string name="oct">10月</string>
+    <string name="nov">11月</string>
+    <string name="dec">12月</string>
+
+    <string name="access_description">バンドリームの実行を感知するために権限の許容が必要です。</string>
 </resources>

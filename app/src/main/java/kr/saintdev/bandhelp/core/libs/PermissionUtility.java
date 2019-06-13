@@ -2,6 +2,7 @@ package kr.saintdev.bandhelp.core.libs;
 
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ServiceInfo;
@@ -47,7 +48,7 @@ public class PermissionUtility {
         return true;
     }
 
-    public static int openOverlayPermissionSetting(AppCompatActivity activity) {
+    public static int openOverlayPermissionSetting(Activity activity) {
         if(!hadOverlayPermission(activity)) {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + activity.getPackageName()));
             activity.startActivityForResult(intent, 0x9);
@@ -56,7 +57,7 @@ public class PermissionUtility {
         return 0x9;
     }
 
-    public static void openAccessibilityServiceSettings(AppCompatActivity activity) {
+    public static void openAccessibilityServiceSettings(Activity activity) {
         activity.startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
     }
 }

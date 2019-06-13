@@ -20,15 +20,37 @@
     <string name="application_info">걸파핼퍼 정보</string>
     <!-- MainActivity End -->
 
+    <!-- Settings Activity -->
+    <string name="settings_general_permission">권한 설정</string>
+    <string name="settings_general_access">접근성 설정</string>
+    <string name="settings_general_access_summ">접근성 서비스를 확인합니다.</string>
+    <string name="settings_general_overlap">오버레이 권한</string>
+    <string name="settings_general_overlay_summ">오버레이 권한을 확인합니다.</string>
+    <string name="settings_general_ingame">게임 설정</string>
+    <string name="settings_general_ltemode">강제 LTE 사용</string>
+    <string name="settings_general_ltemode_summ">LTE 만 사용하여 뱅드림을 플레이 합니다.</string>
+    <string name="settings_general_display_orient">화면 고정</string>
+    <string name="settings_general_display_orient_default">가로</string>
+    <string-array name="general_display_orient_dirg">
+        <item>가로</item>
+        <item>가로 (역방향)</item>
+        <item>세로</item>
+        <item>세로 (역방향)</item>
+    </string-array>
+
+    <string-array name="general_display_orient_dirg_val">
+        <item>0</item>
+        <item>8</item>
+        <item>1</item>
+        <item>9</item>
+    </string-array>
+
     <!-- Game Overlay View -->
     <string name="protector_start">걸파 핼퍼가 시작되었습니다.</string>
     <!-- GameOverlay View End-->
 
     <!-- Time settings pref -->
     <string name="time_settings_category">시간 설정</string>
-    <string name="time_settings_safe">권장 시간</string>
-    <string name="time_settings_warning">경고 시간</string>
-    <string name="time_settings_danger">위험 시간</string>
     <string-array name="times_str">
         <item>0h 30m</item>
         <item>1h 00m</item>
@@ -77,4 +99,10 @@
     <string name="dec">12월</string>
 
     <string name="access_description">뱅드림 실행을 감지하기 위해 권한 허용이 필요합니다.</string>
+
+    <string name="recored_title">1년 총 플레이 시간 : </string>
+    <string name="recored_1year">올해 플레이 시간 : </string>
+    <string name="recored_avarge">평균 플레이 시간 : </string>
+    <string name="recored_long_time">가장 오래 플레이 한 시간 : </string>
+    <string name="recored_long_day">가장 오래 플레이 한 날짜 : </string>
 </resources>

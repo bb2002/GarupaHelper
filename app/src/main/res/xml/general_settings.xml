@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/settings_general_permission">
+        <PreferenceScreen
+            android:key="permission_accessibility"
+            android:title="@string/settings_general_access"
+            android:summary="@string/settings_general_access_summ" />
+        <PreferenceScreen
+            android:key="permission_overlay"
+            android:title="@string/settings_general_overlap"
+            android:summary="@string/settings_general_overlay_summ" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_general_ingame">
+        <SwitchPreference
+            android:key="lte_mode"
+            android:title="@string/settings_general_ltemode"
+            android:summary="@string/settings_general_ltemode_summ" />
+        <ListPreference
+            android:key="display_orient"
+            android:title="@string/settings_general_display_orient"
+            android:entryValues="@array/general_display_orient_dirg_val"
+            android:entries="@array/general_display_orient_dirg"
+            android:summary="@string/settings_general_display_orient_default" />
+    </PreferenceCategory>
+</PreferenceScreen>

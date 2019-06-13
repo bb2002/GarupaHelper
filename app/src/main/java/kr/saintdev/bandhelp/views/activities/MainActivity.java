@@ -1,5 +1,6 @@
 package kr.saintdev.bandhelp.views.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private View[] optionsView = null;
     private LinearLayout monthPlayTimeCont = null;
     private GithubGrass grassView = null;
+    private View grassViewContainer = null;
 
 
     @Override
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                         findViewById(R.id.application_info_cont)
         };
         this.monthPlayTimeCont = findViewById(R.id.record_gatsu);
+        this.grassViewContainer = findViewById(R.id.month_grass_cont);
 
         // Draw grassView
         Calendar cal = Calendar.getInstance();
@@ -58,6 +61,19 @@ public class MainActivity extends AppCompatActivity {
         this.grassView = new GithubGrass(this, month, month, 0);
         this.grassView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         monthPlayTimeCont.addView(this.grassView);
+
+        this.optionsView[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, GeneralSettingsActivity.class));
+            }
+        });
+        this.grassViewContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, PlayRecoredActivity.class));
+            }
+        });
     }
 
     @Override
