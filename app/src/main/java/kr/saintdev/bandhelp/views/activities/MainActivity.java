@@ -68,6 +68,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, GeneralSettingsActivity.class));
             }
         });
+        this.optionsView[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, DevInfoActivity.class));
+            }
+        });
+        this.appStatusCont.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, GeneralSettingsActivity.class));
+            }
+        });
+
         this.grassViewContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

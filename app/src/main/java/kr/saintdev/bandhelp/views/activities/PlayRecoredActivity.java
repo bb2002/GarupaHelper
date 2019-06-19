@@ -18,9 +18,6 @@ import kr.saintdev.bandhelp.views.lib.GithubGrass;
 public class PlayRecoredActivity extends AppCompatActivity {
     private GithubGrass grassView = null;
     private int totalPlayTime = 0;
-    private int playDate = 0;
-    private int veryLong = 0;
-    private Date verylongdate = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,14 +27,12 @@ public class PlayRecoredActivity extends AppCompatActivity {
 
         drawGrassBlocks();
 
-        ((TextView) findViewById(R.id.recored_1year_data)).setText(totalPlayTime + "M");
-        ((TextView) findViewById(R.id.recored_avarge_data)).setText(totalPlayTime / playDate + "M");
-        ((TextView) findViewById(R.id.recored_1year_data)).setText(totalPlayTime / playDate + "M");
-
-        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String to = transFormat.format(verylongdate);
-
-        ((TextView) findViewById(R.id.recored_long_date_data)).setText(to);
+        // calc total playtime
+        if(totalPlayTime != 0) {
+            int hour = totalPlayTime / 60;
+            int min = totalPlayTime % 60;
+            ((TextView) findViewById(R.id.total_play_time)).setText(hour + "h " + min + "m");
+        }
 
     }
 
@@ -48,10 +43,7 @@ public class PlayRecoredActivity extends AppCompatActivity {
     private void drawGrassBlocks() {
         Calendar cal = Calendar.getInstance();
         GarupaDBController dbHelper = GarupaDBController.getInstance(this);
-
-        String month = (cal.get(Calendar.MONTH) + 1) <= 9 ? ("0" + (cal.get(Calendar.MONTH) + 1)) : (cal.get(Calendar.MONTH) + 1) + "";
-
-        ArrayList<GarupaPlayTime> times = dbHelper.getCurrentMonthPlayTime(cal.get(Calendar.YEAR) + "-" + month);
+        ArrayList<GarupaPlayTime> times = dbHelper.getCurrentMonthPlayTime(cal.get(Calendar.YEAR) + "");
 
         if(times != null) {
             for (int i = 0; i < times.size(); i++) {
@@ -67,12 +59,6 @@ public class PlayRecoredActivity extends AppCompatActivity {
                     if (nextCal.get(Calendar.DAY_OF_MONTH) == dateTime.get(Calendar.DAY_OF_MONTH) && nextCal.get(Calendar.MONTH) == dateTime.get(Calendar.MONTH) && nextCal.get(Calendar.YEAR) == dateTime.get(Calendar.YEAR)) {
                         // 년 월 일이 모두 같은 플레이 시간
                         playtimes += nextTime.getPlayTimeMinute();
-                        this.totalPlayTime += nextTime.getPlayTimeMinute();
-
-                        if(veryLong < nextTime.getPlayTimeMinute()) {
-                            veryLong = nextTime.getPlayTimeMinute();
-                            verylongdate = nextTime.getStartDateTime();
-                        }
                     } else {
                         i--;
                         break;
@@ -80,10 +66,8 @@ public class PlayRecoredActivity extends AppCompatActivity {
                 }
 
                 int color;
-                playDate ++;
 
                 if (playtimes == 0) {
-                    playDate --;
                     color = R.color.githubGrass_Gray;
                 } else if (playtimes > 0 && playtimes <= 30) {
                     color = R.color.githubGrass_Green1;
@@ -96,6 +80,7 @@ public class PlayRecoredActivity extends AppCompatActivity {
                 }
 
                 this.grassView.setGrassColor(dateTime.get(Calendar.DAY_OF_MONTH), dateTime.get(Calendar.MONTH) + 1, color);
+                totalPlayTime += playtimes;
             }
         }
     }

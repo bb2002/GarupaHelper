@@ -100,9 +100,6 @@
 
     <string name="access_description">뱅드림 실행을 감지하기 위해 권한 허용이 필요합니다.</string>
 
-    <string name="recored_title">1년 총 플레이 시간 : </string>
-    <string name="recored_1year">올해 플레이 시간 : </string>
-    <string name="recored_avarge">평균 플레이 시간 : </string>
-    <string name="recored_long_time">가장 오래 플레이 한 시간 : </string>
-    <string name="recored_long_day">가장 오래 플레이 한 날짜 : </string>
+    <string name="recored_title">총 플레이 합계</string>
+    <string name="play_total_time">올해 총 플레이 시간</string>
 </resources>

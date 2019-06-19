@@ -4,66 +4,24 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    <TableLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp">
-        <TableRow>
-            <TextView
-                android:text="@string/recored_1year"
-                android:layout_weight="1"
-                android:textSize="16sp"
-                android:textColor="@color/colorBlack"/>
-            <TextView
-                android:id="@+id/recored_1year_data"
-                android:text="undefined"
-                android:layout_weight="1"
-                android:textSize="16sp"
-                android:textColor="@color/colorBlack"/>
-        </TableRow>
+        android:text="@string/play_total_time"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/total_play_time"
+        android:gravity="center"
+        android:text="0h 0m"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"/>
 
-        <TableRow>
-            <TextView
-                android:text="@string/recored_avarge"
-                android:layout_weight="1"
-                android:textSize="16sp"
-                android:textColor="@color/colorBlack"/>
-            <TextView
-                android:id="@+id/recored_avarge_data"
-                android:text="undefined"
-                android:layout_weight="1"
-                android:textSize="16sp"
-                android:textColor="@color/colorBlack"/>
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:text="@string/recored_long_time"
-                android:layout_weight="1"
-                android:textSize="16sp"
-                android:textColor="@color/colorBlack"/>
-            <TextView
-                android:id="@+id/recored_long_date_data"
-                android:text="undefined"
-                android:layout_weight="1"
-                android:textSize="16sp"
-                android:textColor="@color/colorBlack"/>
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:text="@string/recored_long_time"
-                android:layout_weight="1"
-                android:textSize="16sp"
-                android:textColor="@color/colorBlack"/>
-            <TextView
-                android:id="@+id/recored_long_time_data"
-                android:text="undefined"
-                android:layout_weight="1"
-                android:textSize="16sp"
-                android:textColor="@color/colorBlack"/>
-        </TableRow>
-    </TableLayout>
 
     <ScrollView
         android:layout_width="match_parent"
