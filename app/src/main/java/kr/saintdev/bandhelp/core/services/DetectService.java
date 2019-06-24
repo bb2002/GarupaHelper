@@ -24,28 +24,32 @@ public class DetectService extends AccessibilityService {
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        if(event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
-            String eventPackageName = event.getPackageName().toString();
-            if(isIgnoreableApp(eventPackageName)) {
-                // 무시해도 상관 없는 이벤트
-                return;
-            }
-
-            boolean isBangdreamEvent = isEventByBangdream(eventPackageName);
-
-            if(isBangdreamRunning) {
-                // 현재 뱅드림 실행 중.
-                if(!isBangdreamEvent) {
-                    // 뱅드림이 중지됨.
-                    onBangdreamStop();
+        try {
+            if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+                String eventPackageName = event.getPackageName().toString();
+                if (isIgnoreableApp(eventPackageName)) {
+                    // 무시해도 상관 없는 이벤트
+                    return;
                 }
-            } else {
-                // 현재 뱅드림 실행중이 아님.
-                if(isBangdreamEvent) {
-                    // 뱅드림이 실행됨
-                    onBangdreamRun();
+
+                boolean isBangdreamEvent = isEventByBangdream(eventPackageName);
+
+                if (isBangdreamRunning) {
+                    // 현재 뱅드림 실행 중.
+                    if (!isBangdreamEvent) {
+                        // 뱅드림이 중지됨.
+                        onBangdreamStop();
+                    }
+                } else {
+                    // 현재 뱅드림 실행중이 아님.
+                    if (isBangdreamEvent) {
+                        // 뱅드림이 실행됨
+                        onBangdreamRun();
+                    }
                 }
             }
+        } catch(Exception ex) {
+            ex.printStackTrace();
         }
     }
 

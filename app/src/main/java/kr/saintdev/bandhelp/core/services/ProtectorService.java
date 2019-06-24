@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.PixelFormat;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -29,13 +30,25 @@ public class ProtectorService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.overlayView = inflater.inflate(R.layout.game_overlay, null);
-        this.overlayView.setOnTouchListener(OnOverlayViewClickListener);
-        this.wmManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        try {
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            this.overlayView = inflater.inflate(R.layout.game_overlay, null);
+            this.overlayView.setOnTouchListener(OnOverlayViewClickListener);
+            this.wmManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
 
-        // Add view in overlay.
-        addOverlayView(false);
+            // Add view in overlay.
+            addOverlayView(false);
+
+            // Run data force
+            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+            if(pref.getBoolean("lte_mode", false)) {
+                // Force LTE RUN.
+                WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                wifi.setWifiEnabled(false);
+            }
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
